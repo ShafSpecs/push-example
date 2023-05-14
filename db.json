@@ -1,0 +1,12 @@
+{
+  "subscriptions": [
+    {
+      "endpoint": "https://wns2-am3p.notify.windows.com/w/?token=BQYAAADfmSPOHq9D1fLA1ZKncYWCsB%2fRdtPS1eOXqaETJ%2bbFCORWq98inT8AeG%2bgslV9CcY2YA8gipwI4y2Y1kBQIuKwoVFXzLXggf0F0cN%2fSAaCohwh5xH4Z7W52pxeHcV%2fCGwZ6q9iGFW3iVfZR6HwP6S%2fPjHndZXRJcu57uZENZ6IEF9362wfKiQWv8xsLCTnPe9jiHJbrS15lUflZ6ZzAbknDs5n8YDGmvgfXqf1cmeSnl8kFmJYBNmr8PtfeFAeDSqj%2fG%2fLWYDUxJdjtUpBM6SmZ6A0TOy5SwW0QgAnk%2b7m0p4h3HilIbhLwyykhsucQ9w%3d",
+      "expirationTime": null,
+      "keys": {
+        "p256dh": "BI5Tm7gcmCFxiBAKM-3OWq8DazOUPEiQNUXAsu1ZcmmaUwbNzMZ39_HERs63Zx5FLWvTNsyAAIrzKijHmipD4vg",
+        "auth": "0lo9J792u88FjhyiG7g3PA"
+      }
+    }
+  ]
+}
