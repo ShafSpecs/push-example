@@ -3,6 +3,7 @@ const VAPID_PUBLIC_KEY =
 
 /* Push notification logic. */
 
+// add to `@remix-pwa/sw`
 export async function unregisterServiceWorker() {
   const registration = await navigator.serviceWorker.getRegistration();
   await registration?.unregister();
@@ -34,6 +35,7 @@ export async function notifyMe() {
     endpoint: subscription!.endpoint,
     type: "notify-me",
   });
+  console.log("Notified");
 }
 
 export async function notifyAll() {

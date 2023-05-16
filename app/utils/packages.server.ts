@@ -16,6 +16,8 @@ const adapter = new JSONFile(dbPath);
 const defaultData = { subscriptions: [] };
 const db = new Low(adapter, defaultData);
 
+// package this...
+
 const sendNotifications = (subscriptions: any[]) => {
   // Create the notification content.
   const notification = JSON.stringify({
