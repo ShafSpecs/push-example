@@ -1,5 +1,7 @@
 /// <reference lib="WebWorker" />
 
+import { Push, type PushHandlerEnv, type PushHandlerPlugin } from "@remix-pwa/push"
+
 // Service Workers are quite broken in ts, this is a workaround
 export type {};
 declare let self: ServiceWorkerGlobalScope;
@@ -14,17 +16,6 @@ self.addEventListener("activate", (event: ExtendableEvent) => {
   event.waitUntil(self.clients.claim());
 });
 
-interface PushHandlerEnv {
-  event: PushEvent | NotificationEvent | ErrorEvent;
-  state?: Record<string, any>;
-}
-
-interface PushHandlerPlugin {
-  pushReceived?(event: PushHandlerEnv): Promise<void>;
-  pushClicked?(event: PushHandlerEnv): Promise<void>;
-  pushDismissed?(event: PushHandlerEnv): Promise<void>;
-  error?(error: PushHandlerEnv): Promise<void>;
-}
 
 class LoggingPlugin implements PushHandlerPlugin {
   async pushReceived({ event, state }: PushHandlerEnv) {
@@ -92,29 +83,6 @@ class AnalyticsPlugin implements PushHandlerPlugin {
     }
   }
 }
-
-abstract class Push {
-  protected plugins: PushHandlerPlugin[];
-
-  constructor(plugins: PushHandlerPlugin[] = []) {
-    this.plugins = plugins;
-  }
-
-  protected async applyPlugins(
-    pluginMethod: keyof PushHandlerPlugin,
-    args: PushHandlerEnv
-  ) {
-    const promises = this.plugins.map(async (plugin) => {
-      if (plugin[pluginMethod]) {
-        await plugin[pluginMethod]!(args);
-      }
-    });
-    await Promise.all(promises);
-  }
-
-  abstract handlePush(event: PushEvent): Promise<void>;
-}
-
 class CustomPush extends Push {
   private options;
 
